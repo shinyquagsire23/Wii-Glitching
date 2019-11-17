@@ -26,7 +26,7 @@ TP219 - IO7
 TP220 - disconnected
 ```
 
-TP119 (Hollywood reset) should be connected to both nRST and IO8. This allows the CWLite to trigger on the reset being deasserted by itself when nRST is set to high-z.
+TP119 (Hollywood reset) should be connected to a 3.3kohm resistor with both nRST and IO8 on the other end. This allows the CWLite to trigger on the reset being deasserted by itself when nRST is set to high-z. When nRST is pulled to ground, it will pull down through the 3.3kohm resistor and hold the Hollywood in reset.
 
 NAND writing can be done using https://github.com/hjudges/NORway and a Teensy++ 2.0. I used the signal booster configuration (with A0-7, B0-7, C0-7, D0-7 bridged together) and an on-board 3.3v regulator. To get the Wii Mini to fail in boot0, D7 can be pulled to ground for one boot, then use NANDway to write the payload. Writing is generally successful as-is, however I found that reading requires pull-down resistors on all of the NAND D0-7 IO since Hollywood is still on the same lines as the Teensy even while error-looping. I used values 120ohm, 100ohm, and 82ohm because it's what I had lying around and it pushed some voltage spikes that appeared on the page data's 0 bits below the 1.5v threshold.
 
