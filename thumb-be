@@ -1,0 +1,28 @@
+#!/bin/bash
+if [ "$1" = "" ] 
+then
+	echo "Usage: thumb-be <input file> {output file}"
+	exit
+fi
+
+if [ "$2" = "" ]
+then
+	output=${1%.asm}.bin
+else
+	output=$2
+fi
+
+if [ -e "$output".out ]
+then
+	rm "$output".out
+fi
+
+arm-none-eabi-as "$1" -mfpu=vfp -mbig-endian -o "$output".out
+arm-none-eabi-objcopy -O binary "$output".out "$output"
+
+if [ -e "$output".out ]
+then
+	rm "$output".out
+fi
+echo "Assembled Successfully. :)"
+exit
