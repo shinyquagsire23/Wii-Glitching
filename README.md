@@ -15,6 +15,7 @@ Install https://github.com/shinyquagsire23/chipwhisperer/tree/wii-gpio. Technica
 
 The Wii Mini outputs status codes to eight GPIO during boot0. This is used to determine glitching success.
 
+```
 TP221 - IO1
 TP222 - IO2
 TP223 - IO3
@@ -23,6 +24,7 @@ TP225 - IO5
 TP226 - IO6
 TP219 - IO7
 TP220 - disconnected
+```
 
 TP119 (Hollywood reset) should be connected to both nRST and IO8. This allows the CWLite to trigger on the reset being deasserted by itself when nRST is set to high-z.
 
